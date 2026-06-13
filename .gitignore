@@ -1,0 +1,17 @@
+# Log files — rimangono locali, mai su GitHub
+logs/*.log
+logs/*.pcap
+logs/*.strace
+
+# File temporanei
+*.tmp
+*.bak
+*.swp
+
+# Dati personali
+*.env
+secrets/
+
+# OS
+.DS_Store
+Thumbs.db
