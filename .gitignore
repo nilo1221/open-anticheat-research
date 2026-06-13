@@ -3,6 +3,16 @@ logs/*.log
 logs/*.pcap
 logs/*.strace
 
+# Sessioni di cattura raw (NON sanitizzate — mai su GitHub)
+evidence/raw_logs/session_*/
+evidence/diff_demo_*/
+/tmp/be_diff_demo_*/
+/tmp/be_diff_output_*/
+
+# Solo i file sanitizzati possono essere committati
+!evidence/raw_logs/*.sanitized.log
+!evidence/windows_reference/*.reference.log
+
 # File temporanei
 *.tmp
 *.bak
