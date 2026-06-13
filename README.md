@@ -4,6 +4,52 @@
 
 ---
 
+## The Manifesto
+
+**Open Anti-Cheat Research (OACR) — The Resistance against Digital Enclosure**
+
+*"Linux should be a place where the user has total control. If a piece of software refuses to run, we don't cheat—we analyze. We document. And eventually, we solve."*
+
+For years, the gaming industry has moved towards a model of total control, treating users not as owners of their hardware, but as tenants in a walled garden. Software like BattlEye, once a tool for fairness, has become a layer of obfuscation that isolates users based on their OS choice.
+
+This project is our response. We are not creating cheats. We are conducting a technical audit. We are observing how anti-cheat systems discriminate against free, open-source operating systems, documenting their detection methods, and mapping the path to a future where Linux users are treated as first-class citizens in the digital world.
+
+### Why this research matters
+
+- **Transparency:** We believe in knowing what runs on our kernel.
+- **Accountability:** We document how anti-cheat systems like BattlEye perform hardware fingerprinting and kernel auditing.
+- **The Future:** Linux is the backbone of modern gaming (Steam Deck, handheld consoles). Blocking Linux is not a technical necessity; it is a policy choice. We are gathering the evidence to prove that this choice is unfounded.
+
+### The Toolkit
+
+This repository contains our research tools to analyze system integrity and anti-cheat behavior in isolated, non-invasive environments:
+
+- `be_environment_probe.sh` — Pre-flight diagnostic tool to check for common detection triggers before they cause an account flag
+- `be_environment_harden.sh` — Configuration hardening to ensure system environment consistency
+- `proton_log_capture.sh` — Clean, non-invasive logging utility to capture system calls during runtime
+- `log_diff_analyzer.sh` — Core tool to compare Linux runtime logs against standard Windows baselines, identifying the "revealing strings" that trigger anti-cheat alerts
+- `bungie_threat_model.md` — Technical breakdown of the defensive layers used by Bungie/BattlEye
+
+### Our Approach (The "Ghost" Protocol)
+
+We operate under a strict code of ethics to protect our integrity and the research itself:
+
+- **Zero Modification:** We never touch the game code or memory. We observe from the outside (Hypervisor/Network level).
+- **Privacy First:** All logs are cleaned and anonymized. No real user data or account IDs are ever shared.
+- **Scientific Method:** We validate every finding through a "Double-Blind" test: using isolated Windows VMs to establish a baseline of what the anti-cheat expects to see, vs what it sees on our Linux-hosted VMs.
+
+### Join the Resistance
+
+This is a work in progress. Currently, we are documenting BattlEye's 9 detection vectors on Linux and building a reproducible evidence base of real-world runtime logs.
+
+If you are a developer, a kernel researcher, or simply someone who believes that your computer belongs to you, you are welcome here.
+
+**Do not use this to bypass. Use this to learn. Contribute to the documentation.**
+
+This project is for educational purposes only. It does not provide any bypasses for anti-cheat systems and complies with local privacy regulations. We are not against anti-cheat; we are against the arbitrary discrimination of Open Source systems.
+
+---
+
 ## Project Thesis: Decoding the Anti-Cheat Detection Barrier
 
 *A technical deep-dive into the interaction between BattlEye, Bungie's security architecture, and Linux-based environments.*
