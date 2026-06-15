@@ -22,25 +22,25 @@ This project is our response. We are not creating cheats. We are conducting a te
 
 ### The Toolkit
 
-This repository contains our research tools to analyze system integrity and anti-cheat behavior in isolated, non-invasive environments:
+This repository contains our research tools to analyze system integrity and anti-cheat behavior through theoretical analysis and reverse engineering:
 
 - `be_environment_probe.sh` — Pre-flight diagnostic tool to check for common detection triggers before they cause an account flag
 - `be_environment_harden.sh` — Configuration hardening to ensure system environment consistency
 - `proton_log_capture.sh` — Clean, non-invasive logging utility to capture system calls during runtime
-- `log_diff_analyzer.sh` — Core tool to compare Linux runtime logs against standard Windows baselines, identifying the "revealing strings" that trigger anti-cheat alerts
+- `log_diff_analyzer.sh` — Core tool to compare Linux runtime logs against theoretical Windows baselines, identifying the "revealing strings" that trigger anti-cheat alerts
 - `bungie_threat_model.md` — Technical breakdown of the defensive layers used by Bungie/BattlEye
 
 ### Our Approach (The "Ghost" Protocol)
 
 We operate under a strict code of ethics to protect our integrity and the research itself:
 
-- **Zero Modification:** We never touch the game code or memory. We observe from the outside (Hypervisor/Network level).
+- **Zero Modification:** We never touch the game code or memory. We observe from the outside (Network level).
 - **Privacy First:** All logs are cleaned and anonymized. No real user data or account IDs are ever shared.
-- **Scientific Method:** We validate every finding through a "Double-Blind" test: using isolated Windows VMs to establish a baseline of what the anti-cheat expects to see, vs what it sees on our Linux-hosted VMs.
+- **Scientific Method:** We validate every finding through theoretical analysis and reverse engineering of anti-cheat binaries.
 
 ### Join the Resistance
 
-This is a work in progress. Currently, we are documenting BattlEye's 9 detection vectors on Linux and building a reproducible evidence base of real-world runtime logs.
+This is a work in progress. Currently, we are documenting BattlEye's 9 detection vectors on Linux through theoretical analysis and reverse engineering of the BEDaisy driver.
 
 If you are a developer, a kernel researcher, or simply someone who believes that your computer belongs to you, you are welcome here.
 
