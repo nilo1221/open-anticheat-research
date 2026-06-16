@@ -1,0 +1,107 @@
+[1m
+  BattlEye Environment Probe v1.0
+  open-anticheat-research — github.com/nilo1221/open-anticheat-research
+  Timestamp: sab 13 giu 2026, 17:40:34, CEST
+  Report: /home/lollo/winmerda/logs/probe_report_20260613_174034.txt
+[0m
+
+[1m[0;34m══════════════════════════════════════════[0m
+[1m[0;34m  VETTORE #1 — HWID: Disco fisico (ZwOpenFile + IOCTL 0x2D1400)[0m
+[1m[0;34m══════════════════════════════════════════[0m
+[0;36m[INFO][0m Verifica accesso diretto al disco (equivalente Linux di DR0)...
+[0;36m[INFO][0m Disco trovato: /dev/nvme0n1
+[0;36m[INFO][0m   Modello : CT500P3PSSD8
+[0;36m[INFO][0m   Serial  : CT500P3PSSD8_2411479C66B2_1
+[0;32m[PASS][0m Serial disco sembra reale: CT500P3PSSD8_2411479C66B2_1
+
+[1m[0;34m══════════════════════════════════════════[0m
+[1m[0;34m  VETTORE #2 — SLEEP DELTA (GetTickCount + Sleep(1000), soglia 1200ms)[0m
+[1m[0;34m══════════════════════════════════════════[0m
+[0;36m[INFO][0m Misura latenza Sleep(1000ms) — simulazione check BEClient...
+[0;36m[INFO][0m Eseguo 3 misurazioni per stabilità...
+[0;36m[INFO][0m   Misurazione 1: 1002ms
+[0;36m[INFO][0m   Misurazione 2: 1002ms
+[0;36m[INFO][0m   Misurazione 3: 1003ms
+[0;36m[INFO][0m   Media: 1002ms (soglia BattlEye: 1200ms)
+[0;32m[PASS][0m Sleep delta OK: 1002ms < 1200ms (margine: 198ms)
+
+[1m[0;34m══════════════════════════════════════════[0m
+[1m[0;34m  VETTORE #3 — HAL.DLL: Hardware Abstraction Layer[0m
+[1m[0;34m══════════════════════════════════════════[0m
+[0;36m[INFO][0m Ricerca hal.dll nel WINEPREFIX...
+[0;36m[INFO][0m   Trovata: /home/lollo/.wine/drive_c/windows/system32/hal.dll
+[0;36m[INFO][0m   Size   : 60K
+[0;36m[INFO][0m   MD5    : 9ceeb2a6b5ee8366dc93a37d26e032a1
+[0;36m[INFO][0m   Type   : /home/lollo/.wine/drive_c/windows/system32/hal.dll: PE32+ executable for WINE (DLL), x86-64, 13 sections
+[1;33m[WARN][0m hal.dll trovata ma è probabilmente la versione Wine (emulata) — checksum diverso da Windows reale
+
+[1m[0;34m══════════════════════════════════════════[0m
+[1m[0;34m  VETTORE #4 — DEVICE BEEP/NULL (report 0x3E — driver hijacking)[0m
+[1m[0;34m══════════════════════════════════════════[0m
+[0;36m[INFO][0m Verifica device Beep e Null nel WINEPREFIX...
+[0;36m[INFO][0m   Scansione: /home/lollo/.wine/dosdevices
+[0;36m[INFO][0m   Device presenti: c: d: d:: e:: f:: g: g:: h:: i:: j:: z: 
+[0;32m[PASS][0m Device Beep/Null non trovati nel WINEPREFIX (buono)
+
+[1m[0;34m══════════════════════════════════════════[0m
+[1m[0;34m  VETTORE #5 — OS VERSION (RtlGetVersion — mismatch strutture kernel)[0m
+[1m[0;34m══════════════════════════════════════════[0m
+[0;36m[INFO][0m Verifica versione OS sistema host...
+[0;36m[INFO][0m   Kernel   : Linux 7.0.11-zen1-1-zen
+[0;36m[INFO][0m   OS       : Garuda Linux
+[1;33m[WARN][0m Sistema host è Linux — BEDaisy.sys ottiene RtlGetVersion con strutture Linux-emulate da Wine
+[0;36m[INFO][0m   Soluzione richiesta: KVM con Windows reale come guest
+[0;32m[PASS][0m Hypervisor bit NON presente in /proc/cpuinfo (bare metal o VM ben configurata)
+
+[1m[0;34m══════════════════════════════════════════[0m
+[1m[0;34m  VETTORE #6 — PROCESS PARENT CHAIN (BEService come parent)[0m
+[1m[0;34m══════════════════════════════════════════[0m
+[0;36m[INFO][0m Verifica presenza processi BattlEye...
+[1;33m[WARN][0m   BEService non in esecuzione — avviare sempre tramite destiny2launcher.exe
+
+[1m[0;34m══════════════════════════════════════════[0m
+[1m[0;34m  VETTORE #7 — NAMED PIPE (\.
+amedpipe\Battleye)[0m
+[1m[0;34m══════════════════════════════════════════[0m
+[0;36m[INFO][0m Verifica supporto named pipe in Wine...
+[1;33m[WARN][0m   Nessun socket Wine trovato — Wine non in esecuzione o named pipe non disponibile
+
+[1m[0;34m══════════════════════════════════════════[0m
+[1m[0;34m  VETTORE #8 — KERNEL OBJECT SCAN (ZwQueryDirectoryObject)[0m
+[1m[0;34m══════════════════════════════════════════[0m
+[0;36m[INFO][0m Verifica oggetti kernel sospetti...
+[0;36m[INFO][0m   /proc entries: 527
+[0;36m[INFO][0m   /sys  entries: 11
+[1;33m[WARN][0m Su Wine puro, /proc e /sys possono essere visibili al gioco come strutture anomale
+[0;36m[INFO][0m   Soluzione: KVM con Windows guest — host Linux completamente isolato
+[0;36m[INFO][0m   Moduli VM rilevati: vboxdrv 
+[1;33m[WARN][0m Moduli virtualizzazione caricati: vboxdrv 
+
+[1m[0;34m══════════════════════════════════════════[0m
+[1m[0;34m  VETTORE #9 — NETWORK: Porte BattlEye (3074/3077)[0m
+[1m[0;34m══════════════════════════════════════════[0m
+[0;36m[INFO][0m Verifica connettività verso porte BattlEye...
+[0;36m[INFO][0m   Porta 3074: test connessione neutro (normale)
+[0;36m[INFO][0m   Porta 3077: test connessione neutro (normale)
+[0;32m[PASS][0m Porte BattlEye (3074/3077) da monitorare con tcpdump durante il gioco
+
+[1m[0;34m══════════════════════════════════════════[0m
+[1m[0;34m  RIEPILOGO AMBIENTE[0m
+[1m[0;34m══════════════════════════════════════════[0m
+[0;36m[INFO][0m Sistema: lollo-ser — 7.0.11-zen1-1-zen
+[0;36m[INFO][0m CPU: AMD Ryzen 7 PRO 5850U with Radeon Graphics
+[0;36m[INFO][0m RAM: 11Gi
+[0;36m[INFO][0m GPU: Advanced Micro Devices, Inc. [AMD/ATI] Cezanne [Radeon Vega Series / Radeon Vega Mobile Series] (rev d1)
+
+[1m[0;34m══════════════════════════════════════════[0m
+[1m[0;34m  VERDETTO FINALE — Cosa vedrebbe BEDaisy[0m
+[1m[0;34m══════════════════════════════════════════[0m
+
+[1mRisultati:[0m
+  [0;32mPASS[0m: 5 vettori sicuri
+  [1;33mWARN[0m: 6 vettori a rischio
+  [0;31mFAIL[0m: 0 vettori critici
+
+[1;33m[1mVERDETTO: DETECTION PROBABILE[0m
+[1;33mAlcuni vettori critici attivi. Alto rischio PLUM, possibile ban.[0m
+

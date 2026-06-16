@@ -1,0 +1,15 @@
+[1m
+  BattlEye Environment Probe v1.0
+  open-anticheat-research — github.com/nilo1221/open-anticheat-research
+  Timestamp: sab 13 giu 2026, 17:40:15, CEST
+  Report: /home/lollo/winmerda/logs/probe_report_20260613_174015.txt
+[0m
+
+[1m[0;34m══════════════════════════════════════════[0m
+[1m[0;34m  VETTORE #1 — HWID: Disco fisico (ZwOpenFile + IOCTL 0x2D1400)[0m
+[1m[0;34m══════════════════════════════════════════[0m
+[0;36m[INFO][0m Verifica accesso diretto al disco (equivalente Linux di DR0)...
+[0;36m[INFO][0m Disco trovato: /dev/nvme0n1
+[0;36m[INFO][0m   Modello : CT500P3PSSD8
+[0;36m[INFO][0m   Serial  : CT500P3PSSD8_2411479C66B2_1
+[0;32m[PASS][0m Serial disco sembra reale: CT500P3PSSD8_2411479C66B2_1
